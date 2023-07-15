@@ -10,4 +10,6 @@ COPY ./ ./
 
 RUN npm i
 
+ENV PORT 3001
+
 CMD ["npm", "run", "start"]
