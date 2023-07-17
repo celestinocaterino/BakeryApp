@@ -2,14 +2,13 @@ import { Request, Response } from 'express';
 import ingredientService from '../services/ingredient.service';
 
 class IngredientController {
+  private service;
 
-	private service;
+  constructor(ingredientService: any) {
+    this.service = ingredientService;
+  }
 
-	constructor(ingredientService: any) {
-		this.service = ingredientService;
-	}
-	
-	getIngredients = async (request: Request, response: Response) => {
+  getIngredients = async (request: Request, response: Response) => {
     try {
       const ingredients = await this.service.getIngredients();
 

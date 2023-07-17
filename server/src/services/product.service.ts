@@ -4,17 +4,16 @@ import { Product } from './../entities/product.entity';
 import { dataSource } from './../config/database';
 
 class ProductService {
-
   private productRepository;
   private ingredientRepository;
 
-	constructor(
-    productRepository: Repository<Product>, 
+  constructor(
+    productRepository: Repository<Product>,
     ingredientRepository: Repository<Ingredient>
   ) {
-		this.productRepository = productRepository;
+    this.productRepository = productRepository;
     this.ingredientRepository = ingredientRepository;
-	}
+  }
 
   getProducts = async () => {
     return await this.productRepository.createQueryBuilder('users').getMany();
@@ -24,7 +23,7 @@ class ProductService {
     return await this.productRepository.find({ where: { id } });
   };
 
-	createProduct = async (product: Partial<Product>) => {
+  createProduct = async (product: Partial<Product>) => {
     return await this.productRepository.save(product);
   };
 

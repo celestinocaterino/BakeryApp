@@ -4,27 +4,28 @@ import { Product } from './../entities/product.entity';
 import { dataSource } from './../config/database';
 
 class IngredientService {
-
   private ingredientRepository;
   private productRepository;
 
-	constructor(
+  constructor(
     ingredientRepository: Repository<Ingredient>,
-    productRepository: Repository<Product>, 
+    productRepository: Repository<Product>
   ) {
-		this.ingredientRepository = ingredientRepository;
+    this.ingredientRepository = ingredientRepository;
     this.productRepository = productRepository;
-	}
+  }
 
   getIngredients = async () => {
-    return await this.ingredientRepository.createQueryBuilder('ingredients').getMany();
+    return await this.ingredientRepository
+      .createQueryBuilder('ingredients')
+      .getMany();
   };
 
   getIngredient = async (id: number) => {
     return await this.ingredientRepository.find({ where: { id } });
   };
 
-	createIngredient = async (ingredient: Partial<Ingredient>) => {
+  createIngredient = async (ingredient: Partial<Ingredient>) => {
     return await this.ingredientRepository.save(ingredient);
   };
 

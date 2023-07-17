@@ -2,12 +2,11 @@ import { Request, Response } from 'express';
 import productService from '../services/product.service';
 
 class ProductController {
+  private service;
 
-	private service;
-
-	constructor(productService: any) {
-		this.service = productService;
-	}
+  constructor(productService: any) {
+    this.service = productService;
+  }
 
   getProducts = async (request: Request, response: Response) => {
     try {
