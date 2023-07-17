@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './index.scss';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from "react-router-dom";
-import { ProfileProvider } from './contexts/auth.context';
-import AppRoutes from './routes';
 
 
 if (process.env.REACT_APP_NODE_ENV === 'development') {
@@ -16,11 +15,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ProfileProvider>
-        <AppRoutes />
-      </ProfileProvider>
-    </BrowserRouter>
+    <App />
   </React.StrictMode>
 );
 
