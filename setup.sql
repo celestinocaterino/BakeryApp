@@ -33,9 +33,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 ALTER TABLE `products` ADD `quantity` int NOT NULL;
 
-ALTER TABLE `product_ingredient` ADD CONSTRAINT `FK_d6fd52ba735eee4514d0a9a92cc` FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `product_ingredient` ADD CONSTRAINT `FK_d6fd52ba735eee4514d0a9a92cc` FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE `product_ingredient` ADD CONSTRAINT `FK_1525d4cd30cd2af9de7952a0fe2` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredients`(`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `product_ingredient` ADD CONSTRAINT `FK_1525d4cd30cd2af9de7952a0fe2` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredients`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 INSERT INTO `users` (email, password)
 VALUES ('admin@admin.com', '$2a$10$.yT0NBjUOKAsx5ps03FRD.oYgoNiJiY.YsJPQHjlqUyuKG8LELKlW');
