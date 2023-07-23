@@ -4,7 +4,7 @@ import { createLogger, format, transports } from 'winston';
 const logger = createLogger({
   level: config.node_env === 'production' ? 'info' : 'debug',
   format: format.json(),
-  defaultMeta: { service: 'user-service' },
+  defaultMeta: { service: 'app-service' },
   transports: [
     //
     // - Write all logs with importance level of `error` or less to `error.log`
