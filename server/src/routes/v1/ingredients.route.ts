@@ -6,7 +6,7 @@ const router = Router();
 
 router.get('/', ingredientController.getIngredients);
 router.get('/:id', ingredientController.getIngredient);
-router.post('/', ingredientController.insertIngredient);
+router.post('/', auth, ingredientController.insertIngredient);
 router.patch('/:id', auth, ingredientController.updateIngredient);
 router.delete('/:id', auth, ingredientController.deleteIngredient);
 
