@@ -14,7 +14,7 @@ class AuthController {
 
       response.status(200).json(loginResponse);
     } catch (error) {
-      response.status(401).json({message: error.message, status: 401});
+      response.status(401).json({ message: error.message, status: 401 });
     }
   };
 }

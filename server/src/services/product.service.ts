@@ -20,16 +20,17 @@ class ProductService {
   }
 
   getProducts = async () => {
-    return await this.productRepository.createQueryBuilder('products').orderBy('products.id', 'DESC').getMany();
+    return await this.productRepository
+      .createQueryBuilder('products')
+      .orderBy('products.id', 'DESC')
+      .getMany();
   };
 
   getProduct = async (id: number) => {
-    const product = this.productRepository.findOne(
-      { 
-        relations: ['product_ingredients', 'product_ingredients.ingredient'], 
-        where: { id } 
-      }
-    );
+    const product = this.productRepository.findOne({
+      relations: ['product_ingredients', 'product_ingredients.ingredient'],
+      where: { id },
+    });
 
     return await product;
   };
@@ -40,30 +41,28 @@ class ProductService {
 
   addProductIngredients = async (productId: number, ingredients: []) => {
     ingredients.forEach(async (element: any) => {
-      if( element.name ) {
-        const { id } = await this.findIngredient(element.name) ?? await this.createIngredient(element.name);
-        await this.productIngredientRepository.save(
-          {
-            product: productId,
-            ingredient: id,
-            quantity: element.quantity as number,
-            unit_of_measure: element.unit_of_measure,
-          } as unknown as Partial<ProductIngredient>
-        );
+      if (element.name) {
+        const { id } =
+          (await this.findIngredient(element.name)) ??
+          (await this.createIngredient(element.name));
+        await this.productIngredientRepository.save({
+          product: productId,
+          ingredient: id,
+          quantity: element.quantity as number,
+          unit_of_measure: element.unit_of_measure,
+        } as unknown as Partial<ProductIngredient>);
       }
     });
   };
-  
+
   createIngredient = async (name: string) => {
-    return await this.ingredientRepository.save({name});
+    return await this.ingredientRepository.save({ name });
   };
 
   findIngredient = async (name: string) => {
-    return await await this.ingredientRepository.findOne(
-        { 
-          where: { name }
-        }
-      );
+    return await await this.ingredientRepository.findOne({
+      where: { name },
+    });
   };
 
   updateProduct = async (id: number, product: Partial<Product>) => {

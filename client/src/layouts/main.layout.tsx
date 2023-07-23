@@ -9,7 +9,7 @@ export default function Main({ children }: { children: React.ReactElement }) {
       <Container maxWidth="lg">
         <Header title="Bakery App" />
         <main>
-					{children}
+          {children}
         </main>
       </Container>
       <Footer

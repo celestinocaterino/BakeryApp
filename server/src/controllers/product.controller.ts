@@ -14,7 +14,7 @@ class ProductController {
 
       response.status(200).json(products);
     } catch (error) {
-      response.status(500).json({message: error.message, status: 400});
+      response.status(500).json({ message: error.message, status: 400 });
     }
   };
 
@@ -25,18 +25,21 @@ class ProductController {
 
       response.status(200).json(product);
     } catch (error) {
-      response.status(500).json({message: error.message, status: 400});
+      response.status(500).json({ message: error.message, status: 400 });
     }
   };
 
   insertProduct = async (request: Request, response: Response) => {
     try {
       const product = await this.service.createProduct(request.body);
-      await this.service.addProductIngredients(product.id, request.body.ingredients);
+      await this.service.addProductIngredients(
+        product.id,
+        request.body.ingredients
+      );
 
       response.status(200).json(product);
     } catch (error) {
-      response.status(500).json({message: error.message, status: 400});
+      response.status(500).json({ message: error.message, status: 400 });
     }
   };
 
@@ -47,7 +50,7 @@ class ProductController {
 
       response.status(200).json(product);
     } catch (error) {
-      response.status(500).json({message: error.message, status: 400});
+      response.status(500).json({ message: error.message, status: 400 });
     }
   };
 
@@ -58,7 +61,7 @@ class ProductController {
 
       response.status(200).json(product);
     } catch (error) {
-      response.status(500).json({message: error.message, status: 400});
+      response.status(500).json({ message: error.message, status: 400 });
     }
   };
 }

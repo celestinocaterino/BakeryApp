@@ -5,7 +5,7 @@ import {
   OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
-  Unique
+  Unique,
 } from 'typeorm';
 import { ProductIngredient } from './productIngredient.entity';
 

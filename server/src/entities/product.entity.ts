@@ -5,7 +5,7 @@ import {
   OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
-  AfterLoad
+  AfterLoad,
 } from 'typeorm';
 import { ProductIngredient } from './productIngredient.entity';
 
@@ -46,21 +46,21 @@ export class Product {
 
     let discount = null;
 
-    if(passedDays >= 2) {
-      discount = this.price * 80 / 100;
+    if (passedDays >= 2) {
+      discount = (this.price * 80) / 100;
     }
 
-    if(passedDays >= 3) {
-      discount = this.price * 20 / 100;
+    if (passedDays >= 3) {
+      discount = (this.price * 20) / 100;
     }
 
-    if(passedDays >= 4) {
+    if (passedDays >= 4) {
       discount = null;
       this.to_remove = 1;
     }
 
     discount = parseFloat(discount?.toFixed(2));
-    
+
     this.discount = discount;
   }
 
