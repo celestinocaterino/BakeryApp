@@ -20,7 +20,7 @@ export class Ingredient {
     () => ProductIngredient,
     (productIngredient) => productIngredient.ingredient
   )
-  public productIngredient: ProductIngredient[];
+  public product_ingredients: ProductIngredient[];
 
   @CreateDateColumn({
     type: 'timestamp',

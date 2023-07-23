@@ -16,11 +16,18 @@ class ProductService {
   }
 
   getProducts = async () => {
-    return await this.productRepository.createQueryBuilder('users').getMany();
+    return await this.productRepository.createQueryBuilder('products').orderBy('products.id', 'DESC').getMany();
   };
 
   getProduct = async (id: number) => {
-    return await this.productRepository.find({ where: { id } });
+    const product = this.productRepository.findOne(
+      { 
+        relations: ['product_ingredients', 'product_ingredients.ingredient'], 
+        where: { id } 
+      }
+    );
+
+    return await product;
   };
 
   createProduct = async (product: Partial<Product>) => {
