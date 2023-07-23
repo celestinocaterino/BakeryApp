@@ -32,6 +32,7 @@ class ProductController {
   insertProduct = async (request: Request, response: Response) => {
     try {
       const product = await this.service.createProduct(request.body);
+      await this.service.addProductIngredients(product.id, request.body.ingredients);
 
       response.status(200).json(product);
     } catch (error) {

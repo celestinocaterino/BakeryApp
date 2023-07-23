@@ -6,7 +6,7 @@ import Public from './Public.route';
 import Homepage from '../pages/homepage';
 import SignIn from '../pages/sign-in';
 import Dashboard from '../pages/dashboard';
-import ProductDetail from '../pages/product-detail';
+import ProductDetail from '../pages/product';
 
 const AppRoutes = () => {
   return (
@@ -31,7 +31,7 @@ const AppRoutes = () => {
       />
 
       <Route
-        path="product/:id"
+        path="products/:id"
         element={
           <Public>
             <ProductDetail />

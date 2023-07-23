@@ -17,10 +17,10 @@ export class Migration1689540593146 implements MigrationInterface {
       `CREATE TABLE \`users\` (\`id\` int NOT NULL AUTO_INCREMENT, \`email\` varchar(255) NOT NULL, \`password\` varchar(255) NOT NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`
     );
     await queryRunner.query(
-      `ALTER TABLE \`product_ingredient\` ADD CONSTRAINT \`FK_d6fd52ba735eee4514d0a9a92cc\` FOREIGN KEY (\`productId\`) REFERENCES \`products\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`
+      `ALTER TABLE \`product_ingredient\` ADD CONSTRAINT \`FK_d6fd52ba735eee4514d0a9a92cc\` FOREIGN KEY (\`product_id\`) REFERENCES \`products\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`
     );
     await queryRunner.query(
-      `ALTER TABLE \`product_ingredient\` ADD CONSTRAINT \`FK_1525d4cd30cd2af9de7952a0fe2\` FOREIGN KEY (\`ingredientId\`) REFERENCES \`ingredients\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`
+      `ALTER TABLE \`product_ingredient\` ADD CONSTRAINT \`FK_1525d4cd30cd2af9de7952a0fe2\` FOREIGN KEY (\`ingredient_id\`) REFERENCES \`ingredients\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`
     );
   }
 

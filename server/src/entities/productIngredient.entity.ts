@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { Ingredient } from './ingredient.entity';
 import { Product } from './product.entity';
 
@@ -8,20 +8,16 @@ export class ProductIngredient {
   id: number;
 
   @Column()
-  public product_id: number;
-
-  @Column()
-  public ingredient_id: number;
-
-  @Column()
   public quantity: number;
 
   @Column()
-  public unit_of_measure: number;
+  public unit_of_measure: string;
 
-  @ManyToOne(() => Product, (product) => product.productIngredient)
+  @ManyToOne(() => Product, (product) => product.product_ingredients, {onDelete:'CASCADE'})
+  @JoinColumn({ name: 'product_id' })
   public product: Product;
 
-  @ManyToOne(() => Ingredient, (ingredient) => ingredient.productIngredient)
+  @ManyToOne(() => Ingredient, (ingredient) => ingredient.product_ingredients, {onDelete:'CASCADE'})
+  @JoinColumn({ name: 'ingredient_id' })
   public ingredient: Ingredient;
 }

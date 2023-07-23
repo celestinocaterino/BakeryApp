@@ -1,25 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
+import './styles/index.scss';
 import { BrowserRouter } from "react-router-dom";
 import { ProfileProvider } from './contexts/auth.context';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import AppRoutes from './routes';
-
 
 if (process.env.REACT_APP_NODE_ENV === 'development') {
   const { worker } = require('./mocks/browser')
   worker.start()
 }
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false
+    }
+  }
+});
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ProfileProvider>
-        <AppRoutes />
-      </ProfileProvider>
+      <QueryClientProvider client={queryClient}>
+        <ProfileProvider>
+          <AppRoutes />
+        </ProfileProvider>
+      </QueryClientProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

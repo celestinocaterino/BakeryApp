@@ -1,4 +1,4 @@
-import {Router} from 'express';
+import { Router } from 'express';
 import ingredientController from './../../controllers/ingredient.controller';
 import { auth } from './../../middleware/auth.middleware';
 

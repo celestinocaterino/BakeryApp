@@ -1,17 +1,15 @@
-import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-import Header from './../../components/Header';
-import Footer from './../../components/Footer';
+import Header from './../components/Header';
+import Footer from './../components/Footer';
 
-export default function ProductDetail() {
+export default function Main({ children }: { children: React.ReactElement }) {
+
   return (
     <div>
       <Container maxWidth="lg">
         <Header title="Bakery App" />
         <main>
-          <Grid container spacing={4}>
-            product
-          </Grid>
+					{children}
         </main>
       </Container>
       <Footer

@@ -4,14 +4,14 @@ import { USER_INFO } from '../constants/config';
 import { logout } from '../utils/auth.utils';
 import { getLocalSession, getLocalStorage } from '../utils/storage.utils';
 
-interface AuthContext {
+interface AuthContextData {
   profileData: any;
   // eslint-disable-next-line no-unused-vars
   setProfileData: (profileData: any) => void;
   signOut: () => void;
 }
 
-const AuthContext = createContext<Partial<AuthContext>>({});
+const AuthContext = createContext<Partial<AuthContextData>>({});
 
 const ProfileProvider = ({ children }: { children: React.ReactNode }) => {
   const navigation = useNavigate();

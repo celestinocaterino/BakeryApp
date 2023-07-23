@@ -5,6 +5,7 @@ import {
   OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
+  Unique
 } from 'typeorm';
 import { ProductIngredient } from './productIngredient.entity';
 
@@ -20,7 +21,7 @@ export class Ingredient {
     () => ProductIngredient,
     (productIngredient) => productIngredient.ingredient
   )
-  public productIngredient: ProductIngredient[];
+  public product_ingredients: ProductIngredient[];
 
   @CreateDateColumn({
     type: 'timestamp',

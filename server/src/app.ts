@@ -6,26 +6,23 @@ import compression from 'compression';
 import compressFilter from './utils/compressFilter.util';
 import config from './config/config';
 import { dataSource } from './config/database';
-import productsRoutes from './routes/v1/products.route';
-import ingredientsRoutes from './routes/v1/ingredients.route';
-import authRoutes from './routes/v1/auth.route';
+import routes from './routes/v1/index.route';
 
 dataSource
-    .initialize()
-    .then(() => {
-        console.log('Data Source has been initialized!');
-    })
-    .catch((err: Error) => {
-        console.error('Error during Data Source initialization:', err);
-    });
+  .initialize()
+  .then(() => {
+      console.log('Data Source has been initialized!');
+  })
+  .catch((err: Error) => {
+    console.error('Error during Data Source initialization:', err);
+  });
 
 const app: Express = express();
 
 app.use(
   cors({
     // origin is given a array if we want to have multiple origins later
-    origin: [config.cors_origin],
-    credentials: true,
+    origin: config.cors_origin,
   })
 );
 
@@ -41,13 +38,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-
-app.get('/', (_req: Request, res: Response) => {
-  res.send('Hello World!');
-});
-
-app.use('/auth', authRoutes);
-app.use('/products/', productsRoutes);
-app.use('/ingredients/', ingredientsRoutes);
+app.use('/api/v1/', routes);
 
 export default app;

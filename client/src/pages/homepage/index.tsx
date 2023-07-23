@@ -1,42 +1,26 @@
 import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
-import Header from './../../components/Header';
-import Footer from './../../components/Footer';
 import ProductCard from './../../components/ProductCard';
-
-const products = [
-  {
-    id: '1',
-    name: 'Featured post',
-    description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    price: '10',
-  },
-  {
-    id: '2',
-    name: 'Post title',
-    description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    price: '20',
-  },
-];
+import { getProducts } from '../../services/products/queries';
+import { useQuery } from 'react-query';
 
 export default function Homepage() {
+
+  const {
+    data: products,
+    isLoading: productsLoading,
+    refetch
+  } = useQuery([], async () => getProducts());
+
   return (
-    <div>
-      <Container maxWidth="lg">
-        <Header title="Bakery App" />
-        <main>
-          <Grid container spacing={4}>
-            {products.map((product) => (
-              <ProductCard key={product.name} post={product} />
-            ))}
-          </Grid>
-        </main>
-      </Container>
-      <Footer
-        description="Bakery App by Luana e Maria!"
-      />
-    </div>
+    <Grid container spacing={4}>
+      {products?.length > 0 
+        ?
+        products?.map((product: any) => (
+          <ProductCard key={product.id} post={product} />
+        ))
+        :
+        <p>No items</p>
+      }
+    </Grid>
   );
 }
