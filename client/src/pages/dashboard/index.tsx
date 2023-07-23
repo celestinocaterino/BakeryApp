@@ -200,7 +200,7 @@ export const CreateNewProduct = ({
 
   const handleSubmit = () => {
     createProductMutation.mutate(
-      values,
+      {...values, ingredients: inputList},
       {
       onError: () => {
         //message.error('Incorrect Credentials. Try again');
@@ -213,7 +213,6 @@ export const CreateNewProduct = ({
 
   const handleAddClick = () => {
     setInputList([...inputList, { name: "", quantity: "", unit_of_measure: "" }]);
-    console.log(inputList)
   };
 
   const handleInputChange = (e: any, index: any) => {

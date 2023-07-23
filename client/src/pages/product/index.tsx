@@ -21,20 +21,35 @@ export default function ProductDetail() {
       </Grid>
       <Grid item md={6}>
         <Typography sx={{ mb: 2 }} variant="h2" color="text.primary">
-          {product.name}
+          {product?.name}
         </Typography>
-        {product.discount ?
+        {product?.discount ?
             <Typography sx={{ mb: 2 }} variant="body1" color="text.secondary">
-              <del>{product.price}</del> {product.discount} <small>{product.currency}</small>
+              <del>{product?.price}</del> {product?.discount} <small>{product?.currency}</small>
             </Typography>
             :
             <Typography sx={{ mb: 2 }} variant="body1" color="text.secondary">
-              {product.price} <small>{product.currency}</small>
+              {product?.price} <small>{product?.currency}</small>
             </Typography>
           }
+
         <Typography sx={{ mb: 2 }} variant="body1" color="text.primary">
-          {product.description}
+          {product?.description}
         </Typography>
+        <Typography sx={{ mb: 1 }} variant="h6" color="text.secondary">
+          Ingredients
+        </Typography>
+        {product?.product_ingredients?.length
+        ?
+        product?.product_ingredients?.map((data: any) => (
+          <Typography sx={{ mb: 1 }} variant="body1" color="text.secondary">
+            { data.ingredient.name } { data.quantity } { data.unit_of_measure }
+          </Typography>
+        ))
+        :
+        <p>No ingredients</p>
+      }
+        
       </Grid>
     </Grid>
   );

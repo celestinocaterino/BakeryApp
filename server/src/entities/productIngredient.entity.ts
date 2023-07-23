@@ -13,11 +13,11 @@ export class ProductIngredient {
   @Column()
   public unit_of_measure: string;
 
-  @ManyToOne(() => Product, (product) => product.product_ingredients)
+  @ManyToOne(() => Product, (product) => product.product_ingredients, {onDelete:'CASCADE'})
   @JoinColumn({ name: 'product_id' })
   public product: Product;
 
-  @ManyToOne(() => Ingredient, (ingredient) => ingredient.product_ingredients)
+  @ManyToOne(() => Ingredient, (ingredient) => ingredient.product_ingredients, {onDelete:'CASCADE'})
   @JoinColumn({ name: 'ingredient_id' })
   public ingredient: Ingredient;
 }
