@@ -14,7 +14,7 @@ class ProductController {
 
       response.status(200).json(products);
     } catch (error) {
-      response.status(400).json(error.message);
+      response.status(500).json({message: error.message, status: 400});
     }
   };
 
@@ -25,7 +25,7 @@ class ProductController {
 
       response.status(200).json(product);
     } catch (error) {
-      response.status(400).json(error.message);
+      response.status(500).json({message: error.message, status: 400});
     }
   };
 
@@ -36,7 +36,7 @@ class ProductController {
 
       response.status(200).json(product);
     } catch (error) {
-      response.status(400).json(error.message);
+      response.status(500).json({message: error.message, status: 400});
     }
   };
 
@@ -47,7 +47,7 @@ class ProductController {
 
       response.status(200).json(product);
     } catch (error) {
-      response.status(400).json(error.message);
+      response.status(500).json({message: error.message, status: 400});
     }
   };
 
@@ -58,7 +58,7 @@ class ProductController {
 
       response.status(200).json(product);
     } catch (error) {
-      response.status(400).json(error.message);
+      response.status(500).json({message: error.message, status: 400});
     }
   };
 }

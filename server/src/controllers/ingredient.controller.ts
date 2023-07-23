@@ -14,7 +14,7 @@ class IngredientController {
 
       response.status(200).json(ingredients);
     } catch (error) {
-      response.status(400).json(error.message);
+      response.status(500).json({message: error.message, status: 400});
     }
   };
 
@@ -25,7 +25,7 @@ class IngredientController {
 
       response.status(200).json(ingredient);
     } catch (error) {
-      response.status(400).json(error.message);
+      response.status(500).json({message: error.message, status: 400});
     }
   };
 
@@ -35,7 +35,7 @@ class IngredientController {
 
       response.status(200).json(ingredient);
     } catch (error) {
-      response.status(400).json(error.message);
+      response.status(500).json({message: error.message, status: 400});
     }
   };
 
@@ -46,7 +46,7 @@ class IngredientController {
 
       response.status(200).json(response);
     } catch (error) {
-      response.status(400).json(error.message);
+      response.status(500).json({message: error.message, status: 400});
     }
   };
 
@@ -57,7 +57,7 @@ class IngredientController {
 
       response.status(200).json(response);
     } catch (error) {
-      response.status(400).json(error.message);
+      response.status(500).json({message: error.message, status: 400});
     }
   };
 }
