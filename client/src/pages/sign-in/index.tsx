@@ -7,28 +7,35 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { Link } from "react-router-dom";
-
-function Copyright(props: any) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link to="/">
-        Backery App
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import { useMutation } from 'react-query';
+import { login } from '../../services/auth/mutations';
+import { setLocalStorage } from '../../utils/storage.utils';
+import { JWT_TOKEN } from '../../constants/config';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from './../../contexts/auth.context';
 
 export default function SignIn() {
+
+  const navigate = useNavigate();
+  const { profileData, setProfileData } = React.useContext(AuthContext);
+  const loginMutation = useMutation(login);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+    const email = data.get("email") as string;
+    const password = data.get("password") as string;
+
+    loginMutation.mutate({email, password}, {
+      onError: () => {
+        //message.error('Incorrect Credentials. Try again');
+      },
+      onSuccess: async ({ data }: { data: any }) => {
+        setLocalStorage(JWT_TOKEN, data.token);
+        setProfileData?.(data.user);
+        
+        navigate('/dashboard');
+      }
     });
   };
 
@@ -44,7 +51,7 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1 }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -81,7 +88,6 @@ export default function SignIn() {
             </Button>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </div>
   );
